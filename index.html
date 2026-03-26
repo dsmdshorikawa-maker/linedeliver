@@ -10,13 +10,28 @@
   <p id="name"></p>
 
   <script>
-    liff.init({ liffId: "2009609373-YZ6ak3ym" })
+const liffId = "2009609373-YZ6ak3ym";
+ 
+    liff.init({ liffId: liffId })
       .then(() => {
+        if (!liff.isLoggedIn()) {
+          liff.login();
+          return;
+        }
+ 
         return liff.getProfile();
       })
       .then(profile => {
-        document.getElementById("name").textContent =
-          "Hello  " + profile.displayName;
+        const lineUserId = profile.userId;
+ 
+        const surveyUrl =
+          "https://survey.zohopublic.com/zs/FABhIP"
+          + "?line_user_id=" + encodeURIComponent(lineUserId);
+ 
+        window.location.href = surveyUrl;
+      })
+      .catch(err => {
+        console.error(err);
       });
   </script>
 </body>
