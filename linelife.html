@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>My LIFF App</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+  <h1>LIFFƒeƒXƒg</h1>
+  <p id="name"></p>
+
+  <script>
+    liff.init({ liffId: "2009609373-YZ6ak3ym" })
+      .then(() => {
+        return liff.getProfile();
+      })
+      .then(profile => {
+        document.getElementById("name").textContent =
+          "‚±‚ñ‚É‚¿‚Í " + profile.displayName;
+      });
+  </script>
+</body>
+</html>
